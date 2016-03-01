@@ -1,5 +1,20 @@
 package edu.ouc.xiaomi;
 
+/**
+ * 
+题目描述
+世界上有2种人，一种懂二进制，一种不懂。那么你知道两个int32整数m和n的二进制表达，
+有多少个位(bit)不同么？
+
+输入例子:
+1999 2299
+
+输出例子:
+7
+
+ * @author wqx
+ *
+ */
 public class CountBitDiff {
     /**
      * 获得两个整形二进制表达位数不同的数量
@@ -35,6 +50,11 @@ public class CountBitDiff {
     	}
     	return count;
     }
+    /**
+     * n的二进制表示有多少个1
+     * @param n
+     * @return
+     */
     public static int getBit(int n){
     	int count = 0;
     	while(n!=0){
