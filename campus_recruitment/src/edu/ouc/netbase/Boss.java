@@ -32,7 +32,7 @@ import java.util.Scanner;
 
 110
 205
- * @author Administrator
+ * @author wqx
  *
  */
 public class Boss {
