@@ -13,22 +13,34 @@ package edu.ouc.offer;
 public class Remove_Duplicates_from_Sorted_List {
 	/**
 	 * 利用已知链表有序特性，注意加头结点
-	 * @param head
+	 * @param pHead
 	 * @return
 	 */
-    public ListNode deleteDuplicates(ListNode head) {
-    	if(head == null || head.next == null) return head;
+    public ListNode deleteDuplicates(ListNode pHead) {
+    	if(pHead == null || pHead.next == null) return pHead;
     	ListNode begin = new ListNode(0);
-    	begin.next = head;
-        ListNode tail = begin,p = head;
+    	begin.next = null;
+        ListNode tail = begin,p = pHead,t;
         while(p != null){
-        	if(p.val == p.next.val){
+        	if(p.next == null){
+        		tail.next = p;
         		p = p.next;
+        	}else if(p.val != p.next.val){
+        		t = p.next;
+        		//尾插法
+        		p.next = tail.next;
+        		tail.next = p;
+        		tail = p;
+        		
+        		p = t;		
         	}else{
-        		p = q;
-        		q = q.next;
+        		//找到第一个节点满足:p.val != p.next.val
+        		while(p.next != null && p.val == p.next.val){
+        			p = p.next;
+        		}
+        		p = p.next;
         	}
         }
-        return head;
+        return begin.next;
     }
 }
