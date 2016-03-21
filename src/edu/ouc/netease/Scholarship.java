@@ -1,4 +1,4 @@
-package edu.ouc.netbase;
+package edu.ouc.netease;
 
 import java.util.Scanner;
 
