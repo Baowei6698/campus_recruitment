@@ -9,7 +9,7 @@ public class DuplicateNum {
     //    这里要特别注意~返回任意重复的一个，赋值duplication[0]
     // Return value:       true if the input is valid, and there are some duplications in the array number
     //                     otherwise false
-    public boolean duplicate(int numbers[],int length,int [] duplication) {
+    public boolean duplicate2(int numbers[],int length,int [] duplication) {
     	for(int i = 0; i < length; i++){
     		for(int j = i+1; j < length; j++){
     			if(numbers[j] == numbers[i]){
@@ -19,5 +19,26 @@ public class DuplicateNum {
     		}
     	}
     	return false;
+    }
+    /**
+     * numbers[i] 在0到n-1之间
+     * 
+     * @param numbers
+     * @param length
+     * @param duplication
+     * @return
+     */
+    public boolean duplicate(int numbers[],int length,int [] duplication) {
+    	   for ( int i= 0 ; i<length; i++) {
+    	        int index = numbers[i];
+    	        if (index >= length) {
+    	            index -= length;
+    	        }   
+    	        if (numbers[index] >= length) {
+    	            return true;
+    	        }
+    	        numbers[index] = numbers[index] + length;
+    	    }   
+    	    return false;  
     }
 }
