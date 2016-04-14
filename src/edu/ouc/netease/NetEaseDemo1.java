@@ -15,7 +15,7 @@ public class NetEaseDemo1 {
 	static void LCS(String str1, String str2)  
 	{
 		
-	    int len1,len2,posX,posY;
+	    int len1,len2;
 	    len1 = str1.length();
 	    len2 = str2.length();
 	    //½á¹û¼¯£¬str1.substring(result[0][0],result[0][1];
@@ -53,4 +53,49 @@ public class NetEaseDemo1 {
 	    	System.out.println(str1.substring(result[i][0]-maxLen,result[i][0]));
 	    }
 	}  
+	void LCSLength(String s1,String s2,int m, int n, int c[][], int b[][])
+	{
+	    int i, j;
+	    
+	    for(i = 0; i <= m; i++)
+	        c[i][0] = 0;
+	    for(j = 1; j <= n; j++)
+	        c[0][j] = 0;
+	    for(i = 1; i<= m; i++)
+	    {
+	        for(j = 1; j <= n; j++)
+	        {
+	            if(s1.charAt(i-1) == s2.charAt(j-1))
+	            {
+	                c[i][j] = c[i-1][j-1] + 1;
+	                b[i][j] = 0;
+	            }
+	            else if(c[i-1][j] >= c[i][j-1])
+	            {
+	                c[i][j] = c[i-1][j];
+	                b[i][j] = 1;
+	            }
+	            else
+	            {
+	                c[i][j] = c[i][j-1];
+	                b[i][j] = -1;
+	            }
+	        }
+	    }
+	}
+	void PrintLCS(int b[][], String s1, int i, int j)
+	{
+	    if(i == 0 || j == 0)
+	        return;
+	    if(b[i][j] == 0)
+	    {
+	        PrintLCS(b, s1, i-1, j-1);
+	        System.out.printf("%c ", s1.charAt(i-1));
+	    }
+	    else if(b[i][j] == 1)
+	        PrintLCS(b,s1, i-1, j);
+	    else
+	        PrintLCS(b,s1, i, j-1);
+	}
+
 }
