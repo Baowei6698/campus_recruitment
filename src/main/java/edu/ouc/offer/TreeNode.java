@@ -7,7 +7,7 @@ public class TreeNode {
 	public TreeNode(int x){val = x;}
 	
 	public static TreeNode createTree(String str){
-		//{8,8,7,9,3,#,#,#,#,4,7}
+		//w
 		return null;
 	}
 }
