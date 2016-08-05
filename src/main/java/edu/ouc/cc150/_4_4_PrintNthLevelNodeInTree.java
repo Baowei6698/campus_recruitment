@@ -59,9 +59,6 @@ public class _4_4_PrintNthLevelNodeInTree {
 	}
 
 	public static void main(String[] args) {
-		TreeNode node = TreeNode.createTree("{8,8,7,9,3}");
-		ListNode list = getTreeLevel(node,2);
-		printList(list);
 	}
 	public static void printList(ListNode node){
 		if(node != null){
