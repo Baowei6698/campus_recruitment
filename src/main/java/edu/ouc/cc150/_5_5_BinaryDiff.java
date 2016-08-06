@@ -20,19 +20,23 @@ package edu.ouc.cc150;
  */
 public class _5_5_BinaryDiff {
 
+	/**
+	 * 做异或操作得到res， 统计res中1的个数
+	 * 
+	 * @param A
+	 * @param B
+	 * @return
+	 */
     public static int calcCost(int A, int B) {
-    	int res = 0;
+    	int res = A ^ B;
+    	int num = 0;
     	do{
-    		System.out.println("A:" + A + ",B:" + B);
-    		if(A % 2 != B % 2)
-    			res++;
-    		if( A != 0)
-    			A /= 2; 
-    		if(B != 0)
-    			B /= 2;
-    	}while(A != 0 || B != 0);
-    	
-    	return res;
+    		if((res & 1) != 0){
+    			num++;
+    		}
+    		res >>>= 1;
+    	}while(res != 0);
+    	return num;
     }
     
 	public static void main(String[] args) {
