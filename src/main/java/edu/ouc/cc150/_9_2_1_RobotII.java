@@ -27,19 +27,33 @@ public class _9_2_1_RobotII {
 	 * @return
 	 */
     public int countWays(int[][] map, int x, int y) {
-    	int result = 0;
+   	if(x == 1 || y == 1) return 1;
     	
-//    	int total = countWaysOpt(x,y);
-    	
+    	int [][] res = new int[x][y];
+    	res[0][0] = 0;
     	for(int i = 0; i < x; i++){
-    		for(int j = 0; j < y; j++){
-    			if(map[i][j] == 1){
-    				
+    		if(map[i][0] != 1){//出现障碍点
+    			break;
+    		}
+    		res[i][0] = 1;
+    	}
+    	for(int i = 0; i < y; i++){
+    		if(map[0][i] != 1){//出现障碍点
+    			break;
+    		}
+    		res[0][i] = 1;
+    	}
+    	
+    	for(int i = 1; i < x; i++){
+    		for(int j = 1; j < y; j++){
+    			if(map[i][j] != 1){//障碍点
+    				res[i][j] = 0;
+    			}else{
+    				res[i][j] = (res[i-1][j] + res[i][j-1]) % 1000000007;
     			}
     		}
     	}
-    	
-    	return result;
+    	return res[x-1][y-1];
     }
     private static int count = 0;
     
@@ -65,32 +79,9 @@ public class _9_2_1_RobotII {
     	dfs(map,x,y+1);
     }
     public static void main(String[] args) {
-    	//int[][] map = {{0,1,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0}};
     	int[][] map = {{1,1,1,1},{1,1,1,1},{1,1,1,1},{1,1,1,1},{1,1,1,1},{1,1,1,1},{1,1,1,1},{1,0,1,1},{0,1,1,1},{1,1,1,1},{1,1,1,1}};
-    	
+    	int res = new _9_2_1_RobotII().countWays(map,11,4);
     	dfs(map,0,0);
-    	System.out.println("count:" + count);
+    	System.out.println("res:" + res + ",count:" + count);
     }
-    public static int countWaysWithNoBarrier(int x, int y) {
-    	if(x == 1 || y == 1) return 1;
-    	
-    	int [][] res = new int[2][y];
-    	res[0][0] = 0;
-    	for(int i = 0; i < 2; i++){
-    		res[i][0] = 1;
-    	}
-    	
-    	for(int i = 0; i < y; i++){
-    		res[0][i] = 1;
-    	}
-    	
-    	for(int i = 1; i < x; i++){
-    		int posX = (i % 2 == 1 ? 0 : 1);
-    		for(int j = 1; j < y; j++){
-    			res[i%2][j] = res[posX][j] + res[i%2][j-1];
-    		}
-    	}
-    	return res[(x-1)%2][y-1];
-    }
-
 }
